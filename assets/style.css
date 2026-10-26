@@ -147,3 +147,5 @@ footer b{color:var(--text)}
 .skeleton{background:linear-gradient(90deg,var(--card),var(--line),var(--card));background-size:200% 100%;animation:sk 1.2s infinite;border-radius:var(--radius);height:220px}
 @keyframes sk{to{background-position:-200% 0}}
 .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:600;font-size:.9rem;z-index:50}
+@media (max-width:640px){.hero-art{max-width:210px}.foot{flex-wrap:wrap}}
+.who small{white-space:nowrap}

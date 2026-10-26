@@ -145,7 +145,7 @@ function card(p, rank, score) {
     </div>
     <div class="foot">
       <a class="who" href="profile.html?u=${esc(a.login)}"><img loading="lazy" src="${esc(safeUrl(a.avatar))}" alt="">
-        <span>${esc(a.login)}<br><small>${a.followers != null ? fmt(a.followers) + ' followers · ' + fmt(a.following) + ' following' : ''}</small></span></a>
+        <span>${esc(a.login)}<br><small>${a.followers != null ? fmt(a.followers) + ' followers' : ''}</small></span></a>
       <span class="spacer"></span>${followBtn(a.login)}${starBtn(p.repo, p.stars)}
     </div></article>`;
 }
