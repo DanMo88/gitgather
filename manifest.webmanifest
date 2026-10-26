@@ -1,7 +1,7 @@
 {
   "name": "Gitgather — The hangout for GitHub people",
   "short_name": "Gitgather",
-  "description": "Showcase projects, react, comment, chat and climb the 24h Top 100 — all on GitHub.",
+  "description": "Showcase projects, follow makers, chat privately and climb the 24h Top 100.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

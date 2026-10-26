@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Chat · Gitgather</title>
+<title>Admin · Gitgather</title>
 <meta name="description" content="Gitgather — the hangout for GitHub people. Showcase your projects, react, comment, chat and climb the 24h Top 100. Runs entirely on GitHub.">
-<meta property="og:title" content="Chat · Gitgather">
+<meta property="og:title" content="Admin · Gitgather">
 <meta property="og:description" content="The hangout for GitHub people. Showcase projects, react, comment and chat — all on GitHub.">
 <meta property="og:image" content="https://danmo88.github.io/gitgather/assets/icons/icon-512.png">
 <meta name="theme-color" content="#0b0f17">
@@ -24,13 +24,9 @@
 </head>
 <body>
 <main class="wrap">
-  <div style="margin-top:24px" class="section-head"><div><h2 id="roomTitle">💬 Lobby</h2><div class="muted small" id="roomAbout"></div></div>
-    <a class="btn sm" id="roomLink" href="#" target="_blank" rel="noopener">Open on GitHub ↗</a></div>
-  <div class="rooms" id="rooms"></div>
-  <p class="note">⚠️ <b>This chat is public.</b> Every message is a comment on a public GitHub Discussion, visible to anyone on the internet and indexed by search engines. Never share tokens, passwords or personal data. Private messages are not supported.</p>
-  <div class="panel giscus-wrap"><div id="giscus"></div></div>
-  <p class="small muted">Be kind · no spam · no star-for-star requests — see the <a href="https://github.com/DanMo88/gitgather/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>. Newest messages appear at the bottom; the message box is at the top.</p>
+  <div class="section-head" style="margin-top:24px"><h2>🛡️ Reports</h2><div class="seg"><button data-s="open" class="on">Open</button><button data-s="resolved">Resolved</button><button data-s="dismissed">Dismissed</button></div></div>
+  <div id="admin"><div id="rlist" class="stack"></div>
+  <div class="section-head" style="margin-top:28px"><h2>🗑️ Account deletion requests</h2></div><div class="panel" id="dels"></div></div>
 </main>
-<script src="assets/app.js"></script>
-<script>pageChat()</script>
+<script type="module">import { pageAdmin } from './assets/pages.js'; pageAdmin();</script>
 </body></html>

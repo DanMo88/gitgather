@@ -16,11 +16,11 @@ Gitgather is a friendly hangout for people who build things on GitHub. Everythin
 - Impersonation of other people or projects.
 - Multiple accounts or bots used to boost your own posts.
 
-## Chat is public
-The chat rooms are public GitHub Discussions. **Never post tokens, passwords, API keys or personal information.** There are no private messages on Gitgather.
+## Private chat
+Private messages are visible only to the two participants, but they are not end-to-end encrypted. **Never send tokens, passwords or API keys.** Block anyone who bothers you.
 
 ## Reporting
-- Use **"Report content"** in the `…` menu of any comment or discussion on GitHub — this reaches the maintainers and/or GitHub Trust & Safety.
+- Use **Report** (⋯ menu) on any post, comment, profile or message on Gitgather — only admins can see reports.
 - Or open an issue titled `Moderation:` with a link (don't repost the abusive content).
 - For anything urgent or illegal, use [GitHub's report abuse form](https://support.github.com/contact/report-abuse).
 

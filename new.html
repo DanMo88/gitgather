@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>New post · Gitgather</title>
+<meta name="description" content="Gitgather — the hangout for GitHub people. Showcase your projects, react, comment, chat and climb the 24h Top 100. Runs entirely on GitHub.">
+<meta property="og:title" content="New post · Gitgather">
+<meta property="og:description" content="The hangout for GitHub people. Showcase projects, react, comment and chat — all on GitHub.">
+<meta property="og:image" content="https://danmo88.github.io/gitgather/assets/icons/icon-512.png">
+<meta name="theme-color" content="#0b0f17">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icons/favicon-48.png" sizes="48x48">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Gitgather">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script>document.documentElement.dataset.theme=localStorage.getItem('gg-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')</script>
+</head>
+<body>
+<main class="wrap narrow">
+  <div class="section-head" style="margin-top:24px"><h2>🚀 Showcase your project</h2></div>
+  <div id="newPost"></div>
+  <form id="pf" class="panel form" hidden>
+    <label>GitHub repository URL *<input name="repo" required placeholder="https://github.com/owner/repo" inputmode="url" autocomplete="off"><span id="repoHint" class="small"></span></label>
+    <label>Title *<input name="title" required minlength="3" maxlength="120" placeholder="A tiny CLI that turns Markdown into slides"></label>
+    <label>Description<textarea name="body" rows="6" maxlength="5000" placeholder="What does it do? Why did you build it? What feedback do you want?"></textarea></label>
+    <label>Tags<input name="tags" placeholder="javascript, pwa, tools (max 6)"></label>
+    <label>Image URL (optional)<input name="image" placeholder="https://… (we use the repo's GitHub preview if empty)"></label>
+    <div class="preview" id="preview"><span class="muted">Image preview</span></div>
+    <p class="small muted">Be kind and honest. Posts asking for star-for-star or follow-for-follow swaps are removed (<a href="https://github.com/DanMo88/gitgather/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>).</p>
+    <button class="btn primary" type="submit">Publish</button>
+  </form>
+</main>
+<script type="module">import { pageNew } from './assets/pages.js'; pageNew();</script>
+</body></html>
