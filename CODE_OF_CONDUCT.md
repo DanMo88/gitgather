@@ -1,6 +1,6 @@
 # Gitgather Code of Conduct
 
-Gitgather is a friendly hangout for people who build things on GitHub. Everything here happens in public GitHub Discussions, so **[GitHub's Community Guidelines](https://docs.github.com/en/site-policy/github-terms/github-community-guidelines) and [Acceptable Use Policies](https://docs.github.com/en/site-policy/acceptable-use-policies/github-acceptable-use-policies) apply to everything you post.**
+Gitgather is a friendly hangout for people who build things on GitHub. Gitgather uses your GitHub account, so **[GitHub's Community Guidelines](https://docs.github.com/en/site-policy/github-terms/github-community-guidelines) and [Acceptable Use Policies](https://docs.github.com/en/site-policy/acceptable-use-policies/github-acceptable-use-policies) apply here too.**
 
 ## Be a good neighbour
 - Be kind, constructive and specific in feedback. Critique code, not people.
