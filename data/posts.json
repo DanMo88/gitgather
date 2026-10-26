@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T20:57:20.111Z",
+  "generatedAt": "2026-10-26T20:58:43.303Z",
   "weights": {
     "comment": 3,
     "reactor": 2,
@@ -42,12 +42,9 @@
         "commentReactions": 0,
         "stars": 0
       },
-      "stars": 0,
-      "language": {
-        "name": "HTML",
-        "color": "#e34c26"
-      },
-      "repoDescription": "Audio stories for the book American English in 90 Days by Daniel Mozafari",
+      "stars": null,
+      "language": null,
+      "repoDescription": "",
       "score": 1
     },
     {
@@ -82,12 +79,9 @@
         "commentReactions": 0,
         "stars": 0
       },
-      "stars": 0,
-      "language": {
-        "name": "JavaScript",
-        "color": "#f1e05a"
-      },
-      "repoDescription": "آزمون سفارت – 40 interactive Dutch A1 (Spreekvaardigheid) practice tests · Made by Daniel Mozafari",
+      "stars": null,
+      "language": null,
+      "repoDescription": "",
       "score": 1
     }
   ]
