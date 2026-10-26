@@ -1,0 +1,94 @@
+{
+  "generatedAt": "2026-10-26T20:57:20.111Z",
+  "weights": {
+    "comment": 3,
+    "reactor": 2,
+    "commentReaction": 0.5,
+    "star": 0.5,
+    "starCap": 10,
+    "fresh": 1
+  },
+  "count": 2,
+  "posts": [
+    {
+      "number": 6,
+      "url": "https://github.com/DanMo88/gitgather/discussions/6",
+      "title": "American English in 90 Days — audio stories",
+      "description": "The companion audio site for the book *American English in 90 Days*: 90 short stories about Sam's new life in Oakville, levelled A1 → A2 → B1, each with its own MP3 and a one-click ZIP download. Hosted on GitHub Pages with audio in GitHub Releases.",
+      "tags": [
+        "education",
+        "english",
+        "audio",
+        "github-pages"
+      ],
+      "screenshot": "",
+      "repo": "DanMo88/american-english-90-days",
+      "author": {
+        "login": "DanMo88",
+        "name": "",
+        "avatar": "https://avatars.githubusercontent.com/u/347421481?v=4",
+        "followers": 0,
+        "following": 0
+      },
+      "createdAt": "2026-10-26T20:54:02Z",
+      "updatedAt": "2026-10-26T20:54:02Z",
+      "locked": false,
+      "reactions": 0,
+      "reactionCounts": {},
+      "comments": 0,
+      "last24h": {
+        "comments": 0,
+        "reactors": 0,
+        "commentReactions": 0,
+        "stars": 0
+      },
+      "stars": 0,
+      "language": {
+        "name": "HTML",
+        "color": "#e34c26"
+      },
+      "repoDescription": "Audio stories for the book American English in 90 Days by Daniel Mozafari",
+      "score": 1
+    },
+    {
+      "number": 5,
+      "url": "https://github.com/DanMo88/gitgather/discussions/5",
+      "title": "Azmoon Sefarat — 40 interactive Dutch A1 practice tests",
+      "description": "A mobile-first PWA with 40 interactive multiple-choice tests (30 questions each) to prepare for the Dutch A1 speaking exam. Results appear under the last question with correct answers for every mistake. Works offline once opened. Feedback on the UX is very welcome!",
+      "tags": [
+        "pwa",
+        "education",
+        "dutch",
+        "javascript"
+      ],
+      "screenshot": "",
+      "repo": "DanMo88/azmoon-sefarat",
+      "author": {
+        "login": "DanMo88",
+        "name": "",
+        "avatar": "https://avatars.githubusercontent.com/u/347421481?v=4",
+        "followers": 0,
+        "following": 0
+      },
+      "createdAt": "2026-10-26T20:53:41Z",
+      "updatedAt": "2026-10-26T20:53:41Z",
+      "locked": false,
+      "reactions": 0,
+      "reactionCounts": {},
+      "comments": 0,
+      "last24h": {
+        "comments": 0,
+        "reactors": 0,
+        "commentReactions": 0,
+        "stars": 0
+      },
+      "stars": 0,
+      "language": {
+        "name": "JavaScript",
+        "color": "#f1e05a"
+      },
+      "repoDescription": "آزمون سفارت – 40 interactive Dutch A1 (Spreekvaardigheid) practice tests · Made by Daniel Mozafari",
+      "score": 1
+    }
+  ]
+}
