@@ -192,6 +192,7 @@ export async function pageProfile() {
     box.innerHTML = emptyBox('🔍', 'Not on Gitgather yet', `@${esc(u)} hasn't joined Gitgather.`, `<a class="btn" href="https://github.com/${esc(u)}" target="_blank" rel="noopener">View on GitHub ↗</a>`); return;
   }
   document.title = (pr.name || pr.username) + ' · Gitgather';
+  box.innerHTML = '';
   const self = me && me.id === pr.id;
   const followLabel = () => pr.followed_by_me ? 'Following' : pr.follows_me ? '↩︎ Follow back' : '＋ Follow';
   const paint = () => {
