@@ -257,6 +257,5 @@ blockquote{margin:6px 0;padding:6px 12px;border-left:3px solid var(--line);color
 @media (max-width:480px){.install-bar{flex-wrap:wrap}.install-btn{width:100%;justify-content:center}}
 .install-steps{display:grid;gap:10px}
 .install-steps ol{margin:0;padding-inline-start:22px;display:grid;gap:6px;font-size:.95rem}
-.install-steps ol[lang="fa"]{font-family:Vazirmatn,Tahoma,var(--font)}
 .install-steps .ios-share{vertical-align:-3px;color:var(--accent)}
 .install-dlg .dlg-head h3{font-size:1.05rem}

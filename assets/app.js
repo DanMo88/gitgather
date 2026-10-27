@@ -150,8 +150,8 @@ export function card(p, rankInfo) {
   return `<article class="card" data-post="${p.id}">
     <a href="post.html?id=${p.id}" class="shot">${img ? `<img loading="lazy" referrerpolicy="no-referrer" src="${esc(img)}" alt="" onerror="this.remove()">` : ''}<span class="mono">${esc(repoPath(p.repo_url))}</span>${extra}</a>
     <div class="body">
-      <h3><a href="post.html?id=${p.id}">${esc(p.title)}</a></h3>
-      ${p.body ? `<p>${esc(p.body)}</p>` : ''}
+      <h3 dir="auto"><a href="post.html?id=${p.id}">${esc(p.title)}</a></h3>
+      ${p.body ? `<p dir="auto">${esc(p.body)}</p>` : ''}
       ${p.tags?.length ? `<div class="tags">${p.tags.map(t => `<a class="tag" href="index.html?tag=${encodeURIComponent(t)}">#${esc(t)}</a>`).join('')}</div>` : ''}
     </div>
     <div class="actions">
@@ -216,7 +216,7 @@ export function report(target_type, target_id) {
       <option value="spam">Spam</option><option value="harassment">Harassment or hate</option>
       <option value="star_trading">Star / follow trading</option><option value="inappropriate">Inappropriate content</option>
       <option value="impersonation">Impersonation</option><option value="malware">Malware or phishing</option><option value="other">Other</option></select></label>
-    <label>Details (optional)<textarea name="details" maxlength="1000" rows="3"></textarea></label>
+    <label>Details (optional)<textarea name="details" dir="auto" maxlength="1000" rows="3"></textarea></label>
     <div class="row-btns"><button class="btn" value="cancel">Cancel</button><button class="btn primary" value="ok">Send report</button></div>
   </form>`;
   document.body.appendChild(d); d.showModal();
@@ -240,6 +240,6 @@ export function confirmBox(title, text, okLabel = 'Confirm') {
 }
 
 export function userRow(u, extra = '') {
-  return `<div class="urow">${avatar(u, 40)}<a href="profile.html?u=${esc(u.username)}"><b>${esc(u.name || u.username)}</b><br><small class="muted">@${esc(u.username)}</small></a><span class="spacer"></span>${extra}</div>`;
+  return `<div class="urow">${avatar(u, 40)}<a href="profile.html?u=${esc(u.username)}"><b dir="auto">${esc(u.name || u.username)}</b><br><small class="muted">@${esc(u.username)}</small></a><span class="spacer"></span>${extra}</div>`;
 }
 export { avatar, errMsg, ogImage };

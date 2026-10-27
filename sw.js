@@ -3,7 +3,7 @@
 //  • Static assets (css/js/icons): stale-while-revalidate.
 //  • Never touches Supabase (API/auth/realtime), GitHub or any other cross-origin request,
 //    and never caches OAuth callback URLs (?code= / #access_token).
-const VERSION = 'gitgather-v3';
+const VERSION = 'gitgather-v4';
 const SHELL = ['./', 'index.html', 'post.html', 'new.html', 'profile.html', 'messages.html', 'notifications.html', 'settings.html', 'admin.html',
   'assets/style.css', 'assets/app.js', 'assets/pages.js', 'assets/install.js', 'assets/logo.svg',
   'assets/icons/icon-192.png', 'assets/icons/icon-512.png', 'assets/icons/maskable-192.png', 'assets/icons/maskable-512.png',

@@ -29,16 +29,14 @@
     var d = document.createElement('dialog');
     d.className = 'dlg install-dlg';
     d.innerHTML = '<form method="dialog"><div class="dlg-head"><h3>' + title + '</h3><button class="icon-btn" value="x" aria-label="Close">✕</button></div>' + bodyHtml +
-      '<div class="row-btns"><button class="btn primary" value="ok">OK · باشه</button></div></form>';
+      '<div class="row-btns"><button class="btn primary" value="ok">OK</button></div></form>';
     document.body.appendChild(d);
     if (d.showModal) d.showModal(); else d.setAttribute('open', '');
     d.addEventListener('close', function () { d.remove(); });
   }
   var shareIcon = '<svg class="ios-share" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2l4 4-1.4 1.4L13 5.8V15h-2V5.8L9.4 7.4 8 6l4-4zM5 10h3v2H6v8h12v-8h-2v-2h3a1 1 0 011 1v10a1 1 0 01-1 1H5a1 1 0 01-1-1V11a1 1 0 011-1z"/></svg>';
-  function steps(fa, en) {
-    return '<div class="install-steps"><ol dir="rtl" lang="fa">' + fa.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol>' +
-      '<ol dir="ltr" lang="en">' + en.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol></div>' +
-      '<p class="small muted" dir="rtl" lang="fa" style="margin:0">بعد از نصب، فقط یک بار با GitHub وارد شو؛ دفعه‌های بعد خودکار وارد می‌شوی.</p>' +
+  function steps(list) {
+    return '<div class="install-steps"><ol>' + list.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol></div>' +
       '<p class="small muted" style="margin:0">After installing, sign in with GitHub once — you stay signed in.</p>';
   }
 
@@ -50,38 +48,24 @@
       return;
     }
     if (isIOS) {
-      if (!isSafari) {
-        modal('📲 نصب روی آیفون · Install on iPhone', steps(
-          ['این صفحه را در <b>Safari</b> باز کن (روی آیفون نصب فقط از Safari ممکن است).', 'دکمه‌ی اشتراک‌گذاری ' + shareIcon + ' را بزن.', '<b>Add to Home Screen</b> را انتخاب کن و <b>Add</b> را بزن.'],
-          ['Open this page in <b>Safari</b> (iPhone apps install from Safari).', 'Tap the Share button ' + shareIcon + '.', 'Choose <b>Add to Home Screen</b>, then <b>Add</b>.']));
-      } else {
-        modal('📲 نصب روی آیفون · Install on iPhone', steps(
-          ['دکمه‌ی اشتراک‌گذاری ' + shareIcon + ' پایین (یا بالای) صفحه را بزن.', 'پایین برو و <b>Add to Home Screen</b> را انتخاب کن.', '<b>Add</b> را بزن — آیکون Gitgather روی صفحه‌ی اصلی می‌آید.'],
-          ['Tap the Share button ' + shareIcon + ' in Safari\'s toolbar.', 'Scroll down and choose <b>Add to Home Screen</b>.', 'Tap <b>Add</b> — Gitgather appears on your Home Screen.']));
-      }
+      modal('📲 Install on iPhone', steps(isSafari
+        ? ['Tap the Share button ' + shareIcon + ' in Safari\'s toolbar.', 'Scroll down and choose <b>Add to Home Screen</b>.', 'Tap <b>Add</b> — Gitgather appears on your Home Screen.']
+        : ['Open this page in <b>Safari</b> (iPhone apps install from Safari).', 'Tap the Share button ' + shareIcon + '.', 'Choose <b>Add to Home Screen</b>, then <b>Add</b>.']));
       return;
     }
     if (isAndroid) {
-      modal('📲 نصب روی اندروید · Install on Android', steps(
-        ['منوی مرورگر <b>⋮</b> (Chrome) را باز کن.', '<b>Install app</b> یا <b>Add to Home screen</b> را بزن.', 'تأیید کن — Gitgather مثل یک اپ نصب می‌شود.'],
-        ['Open the browser menu <b>⋮</b> (Chrome).', 'Tap <b>Install app</b> or <b>Add to Home screen</b>.', 'Confirm — Gitgather installs like an app.']));
+      modal('📲 Install on Android', steps(['Open the browser menu <b>⋮</b> (Chrome).', 'Tap <b>Install app</b> or <b>Add to Home screen</b>.', 'Confirm — Gitgather installs like an app.']));
       return;
     }
     if (isSafari) {
-      modal('💻 نصب روی مک · Install on Mac', steps(
-        ['در Safari منوی <b>File</b> را باز کن.', '<b>Add to Dock…</b> را بزن و <b>Add</b> را تأیید کن.'],
-        ['In Safari open the <b>File</b> menu.', 'Choose <b>Add to Dock…</b>, then <b>Add</b>.']));
+      modal('💻 Install on Mac', steps(['In Safari, open the <b>File</b> menu.', 'Choose <b>Add to Dock…</b>, then <b>Add</b>.']));
       return;
     }
     if (isFirefox) {
-      modal('💻 نصب روی کامپیوتر · Install on desktop', steps(
-        ['Firefox نصب اپ وب را پشتیبانی نمی‌کند.', 'این صفحه را در <b>Chrome</b> یا <b>Edge</b> باز کن و دکمه‌ی «نصب اپ» را بزن (یا آیکون نصب ⊕ در نوار آدرس).'],
-        ['Firefox can\'t install web apps.', 'Open this page in <b>Chrome</b> or <b>Edge</b> and press “Install app” (or the install icon ⊕ in the address bar).']));
+      modal('💻 Install on desktop', steps(['Firefox can\'t install web apps.', 'Open this page in <b>Chrome</b> or <b>Edge</b> and press “Install app” (or the install icon ⊕ in the address bar).']));
       return;
     }
-    modal('💻 نصب روی کامپیوتر · Install on desktop', steps(
-      ['در نوار آدرس روی آیکون نصب <b>⊕</b> کلیک کن،', 'یا از منوی <b>⋮</b> گزینه‌ی <b>Install Gitgather</b> / <b>Apps → Install this site as an app</b> را بزن.'],
-      ['Click the install icon <b>⊕</b> in the address bar,', 'or open the <b>⋮</b> menu → <b>Install Gitgather</b> / <b>Apps → Install this site as an app</b>.']));
+    modal('💻 Install on desktop', steps(['Click the install icon <b>⊕</b> in the address bar,', 'or open the <b>⋮</b> menu → <b>Install Gitgather</b> / <b>Apps → Install this site as an app</b>.']));
   }
   window.ggInstall = install;
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -29,8 +29,8 @@
   <div id="newPost"></div>
   <form id="pf" class="panel form" hidden>
     <label>GitHub repository URL *<input name="repo" required placeholder="https://github.com/owner/repo" inputmode="url" autocomplete="off"><span id="repoHint" class="small"></span></label>
-    <label>Title *<input name="title" required minlength="3" maxlength="120" placeholder="A tiny CLI that turns Markdown into slides"></label>
-    <label>Description<textarea name="body" rows="6" maxlength="5000" placeholder="What does it do? Why did you build it? What feedback do you want?"></textarea></label>
+    <label>Title *<input name="title" dir="auto" required minlength="3" maxlength="120" placeholder="A tiny CLI that turns Markdown into slides"></label>
+    <label>Description<textarea name="body" dir="auto" rows="6" maxlength="5000" placeholder="What does it do? Why did you build it? What feedback do you want?"></textarea></label>
     <label>Tags<input name="tags" placeholder="javascript, pwa, tools (max 6)"></label>
     <label>Image URL (optional)<input name="image" placeholder="https://… (we use the repo's GitHub preview if empty)"></label>
     <div class="preview" id="preview"><span class="muted">Image preview</span></div>

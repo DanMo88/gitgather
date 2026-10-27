@@ -37,7 +37,7 @@ export async function pageFeed() {
       const podium = ranks.slice(0, 3), rest = ranks.slice(3);
       feed.innerHTML = `<div class="grid">${podium.map(r => card(r.post, r)).join('')}</div>` + (rest.length ? `<div class="board">${rest.map(r => `
         <a class="row" href="post.html?id=${r.id}"><div class="n">${r.rank}</div>
-          <div><h3>${esc(r.post.title)}</h3><div class="meta">@${esc(r.post.username)} · 💬 ${r.comments_24h} · 👍 ${r.likes_24h} · ✨ ${r.stars_24h} today</div></div>
+          <div><h3 dir="auto">${esc(r.post.title)}</h3><div class="meta">@${esc(r.post.username)} · 💬 ${r.comments_24h} · 👍 ${r.likes_24h} · ✨ ${r.stars_24h} today</div></div>
           <div class="pts">🔥 ${r.score}<small>points</small></div></a>`).join('')}</div>` : '');
       refreshStars(podium.map(r => r.post));
       return;
@@ -87,9 +87,9 @@ export async function pagePost() {
           ${!mine ? `<button data-act="report">🚩 Report post</button>` : ''}
           <button data-act="copy">🔗 Copy link</button></div></div>
       </div>
-      <h1>${esc(p.title)}</h1>
+      <h1 dir="auto">${esc(p.title)}</h1>
       ${img ? `<a class="hero-shot" href="${esc(p.repo_url)}" target="_blank" rel="noopener"><img referrerpolicy="no-referrer" src="${esc(img)}" alt="Project image" onerror="this.parentNode.remove()"></a>` : ''}
-      <div class="desc">${esc(p.body)}</div>
+      <div class="desc" dir="auto">${esc(p.body)}</div>
       ${p.tags?.length ? `<div class="tags">${p.tags.map(t => `<a class="tag" href="index.html?tag=${encodeURIComponent(t)}">#${esc(t)}</a>`).join('')}</div>` : ''}
       <div class="actions big">
         <button class="act ${p.liked_by_me ? 'on' : ''}" data-like="${p.id}">👍 Like <b>${fmt(p.like_count)}</b></button>
@@ -119,14 +119,14 @@ export async function pagePost() {
       if (error) toast(errMsg(error), true); else location.href = 'index.html';
     }
   };
-  $('#cForm').innerHTML = me ? `<form class="composer" id="cf">${avatar(me, 34)}<textarea name="body" maxlength="2000" rows="2" placeholder="Write a kind, helpful comment…" required></textarea><button class="btn primary">Send</button></form>` : signInCta('Sign in with GitHub to comment.');
+  $('#cForm').innerHTML = me ? `<form class="composer" id="cf">${avatar(me, 34)}<textarea name="body" dir="auto" maxlength="2000" rows="2" placeholder="Write a kind, helpful comment…" required></textarea><button class="btn primary">Send</button></form>` : signInCta('Sign in with GitHub to comment.');
   const loadComments = async () => {
     const { data } = await sb.from('comments').select('id, body, created_at, author_id, author:profiles!comments_author_id_fkey(username, name, avatar_url)').eq('post_id', p.id).order('created_at');
     $('#cCount').textContent = data?.length ?? 0;
     $('#cList').innerHTML = data?.length ? data.map(c => `<div class="comment" id="c${c.id}">${avatar(c.author, 32)}
-      <div class="cbody"><div class="meta"><a href="profile.html?u=${esc(c.author.username)}"><b>${esc(c.author.name || c.author.username)}</b></a><small>@${esc(c.author.username)} · ${ago(c.created_at)}</small>
+      <div class="cbody"><div class="meta"><a href="profile.html?u=${esc(c.author.username)}"><b dir="auto">${esc(c.author.name || c.author.username)}</b></a><small>@${esc(c.author.username)} · ${ago(c.created_at)}</small>
       <span class="spacer"></span>${me && (me.id === c.author_id || mine || me.is_admin) ? `<button class="link" data-del="${c.id}">Delete</button>` : ''}${me && me.id !== c.author_id ? `<button class="link" data-rep="${c.id}">Report</button>` : ''}</div>
-      <div class="ctext">${esc(c.body)}</div></div></div>`).join('') : `<p class="muted">No comments yet — start the conversation!</p>`;
+      <div class="ctext" dir="auto">${esc(c.body)}</div></div></div>`).join('') : `<p class="muted">No comments yet — start the conversation!</p>`;
   };
   $('#cList').onclick = async e => {
     const del = e.target.closest('[data-del]'), rep = e.target.closest('[data-rep]');
@@ -200,9 +200,9 @@ export async function pageProfile() {
     const head = document.createElement('div'); head.className = 'prof';
     head.innerHTML = `${avatar(pr, 120)}
       <div>
-        <h1>${esc(pr.name || pr.username)} ${pr.is_admin ? '<span class="pill sm">🛡️ admin</span>' : ''}</h1>
+        <h1 dir="auto">${esc(pr.name || pr.username)} ${pr.is_admin ? '<span class="pill sm">🛡️ admin</span>' : ''}</h1>
         <div class="muted">@${esc(pr.username)} ${pr.follows_me && !self ? '<span class="pill sm">Follows you</span>' : ''}</div>
-        ${pr.bio ? `<p>${esc(pr.bio)}</p>` : ''}
+        ${pr.bio ? `<p dir="auto">${esc(pr.bio)}</p>` : ''}
         ${safeUrl(pr.website) || /^http:\/\//.test(pr.website || '') ? `<a class="small" href="${esc(pr.website)}" target="_blank" rel="noopener nofollow ugc">🔗 ${esc(pr.website.replace(/^https?:\/\//, ''))}</a>` : ''}
         <div class="kv" style="margin-top:8px">
           <button class="link" data-list="followers"><b>${fmt(pr.followers_count)}</b> followers</button>
@@ -298,7 +298,7 @@ export async function pageMessages() {
     const list = convs.map(c => ({ ...c, other: by.get(c.user_a === me.id ? c.user_b : c.user_a) })).filter(c => c.other);
     $('#inbox').innerHTML = `<div class="inbox-head">Chats <span class="muted small">🔒 private</span></div>` + list.map(c => `
       <a class="conv ${current === c.id ? 'on' : ''} ${un.has(c.id) ? 'unread' : ''}" href="?c=${c.id}" data-c="${c.id}">${avatar(c.other, 40)}
-        <span><b>${esc(c.other.name || c.other.username)}</b><br><small class="muted">@${esc(c.other.username)}${bl.has(c.other.id) ? ' · blocked' : ''}</small></span><small class="muted when">${ago(c.last_message_at)}</small></a>`).join('');
+        <span><b dir="auto">${esc(c.other.name || c.other.username)}</b><br><small class="muted">@${esc(c.other.username)}${bl.has(c.other.id) ? ' · blocked' : ''}</small></span><small class="muted when">${ago(c.last_message_at)}</small></a>`).join('');
     $$('#inbox [data-c]').forEach(a => a.onclick = e => { e.preventDefault(); openConv(a.dataset.c, list.find(c => c.id === a.dataset.c).other); });
     return list;
   };
@@ -306,12 +306,12 @@ export async function pageMessages() {
     current = cid; history.replaceState(null, '', '?c=' + cid);
     $$('#inbox .conv').forEach(a => a.classList.toggle('on', a.dataset.c === cid));
     box.querySelector('.chat').classList.add('open');
-    $('#thread').innerHTML = `<div class="thread-head"><button class="icon-btn back" id="backBtn">←</button>${avatar(other, 36)}<a href="profile.html?u=${esc(other.username)}"><b>${esc(other.name || other.username)}</b><br><small class="muted">@${esc(other.username)}</small></a><span class="spacer"></span><button class="link" id="repUser">Report</button></div>
+    $('#thread').innerHTML = `<div class="thread-head"><button class="icon-btn back" id="backBtn">←</button>${avatar(other, 36)}<a href="profile.html?u=${esc(other.username)}"><b dir="auto">${esc(other.name || other.username)}</b><br><small class="muted">@${esc(other.username)}</small></a><span class="spacer"></span><button class="link" id="repUser">Report</button></div>
       <div class="msgs" id="msgs"></div>
-      <form class="composer" id="mf"><textarea name="body" rows="1" maxlength="4000" placeholder="Write a message…" required></textarea><button class="btn primary">Send</button></form>`;
+      <form class="composer" id="mf"><textarea name="body" dir="auto" rows="1" maxlength="4000" placeholder="Write a message…" required></textarea><button class="btn primary">Send</button></form>`;
     $('#backBtn').onclick = () => box.querySelector('.chat').classList.remove('open');
     $('#repUser').onclick = () => report('user', other.id);
-    const bubble = m => `<div class="msg ${m.sender_id === me.id ? 'mine' : ''}" data-m="${m.id}"><div class="bubble">${esc(m.body)}</div><small class="muted">${ago(m.created_at)}${m.sender_id === me.id && m.read_at ? ' · seen' : ''}${m.sender_id !== me.id ? ` · <button class="link" data-rep-msg="${m.id}">report</button>` : ''}</small></div>`;
+    const bubble = m => `<div class="msg ${m.sender_id === me.id ? 'mine' : ''}" data-m="${m.id}"><div class="bubble" dir="auto">${esc(m.body)}</div><small class="muted">${ago(m.created_at)}${m.sender_id === me.id && m.read_at ? ' · seen' : ''}${m.sender_id !== me.id ? ` · <button class="link" data-rep-msg="${m.id}">report</button>` : ''}</small></div>`;
     const { data: msgs } = await sb.from('messages').select('*').eq('conversation_id', cid).order('created_at', { ascending: true }).limit(500);
     const el = $('#msgs');
     el.innerHTML = msgs?.length ? msgs.map(bubble).join('') : '<p class="muted small center">Say hi 👋 — only the two of you can read this chat.</p>';
@@ -368,7 +368,7 @@ export async function pageNotifications() {
     box.innerHTML = data.map(n => {
       const href = n.type === 'follow' ? `profile.html?u=${esc(n.actor?.username)}` : n.type === 'message' ? `messages.html?c=${n.conversation_id}` : `post.html?id=${n.post_id}${n.type === 'comment' ? '#comments' : ''}`;
       return `<a class="notif ${n.read_at ? '' : 'unread'}" href="${href}"><span class="nico">${ico[n.type]}</span>${avatar(n.actor, 36)}
-        <span><b>${esc(n.actor?.name || n.actor?.username || 'Someone')}</b> ${txt[n.type]} ${n.post ? `<b>${esc(n.post.title)}</b>` : ''}<br><small class="muted">${ago(n.created_at)}</small></span></a>`;
+        <span><b dir="auto">${esc(n.actor?.name || n.actor?.username || 'Someone')}</b> ${txt[n.type]} ${n.post ? `<b dir="auto">${esc(n.post.title)}</b>` : ''}<br><small class="muted">${ago(n.created_at)}</small></span></a>`;
     }).join('');
   };
   await load();
@@ -386,8 +386,8 @@ export async function pageSettings() {
   box.innerHTML = `
     <div class="panel"><h3>👤 Profile</h3>
       <form id="sf" class="form">
-        <label>Display name<input name="name" maxlength="80" value="${esc(me.name || '')}"></label>
-        <label>Bio<textarea name="bio" maxlength="300" rows="3">${esc(me.bio || '')}</textarea></label>
+        <label>Display name<input name="name" dir="auto" maxlength="80" value="${esc(me.name || '')}"></label>
+        <label>Bio<textarea name="bio" dir="auto" maxlength="300" rows="3">${esc(me.bio || '')}</textarea></label>
         <label>Website<input name="website" type="url" placeholder="https://…" value="${esc(me.website || '')}"></label>
         <p class="small muted">Username and avatar come from your GitHub account (@${esc(me.username)}).</p>
         <button class="btn primary">Save</button></form></div>
@@ -442,7 +442,7 @@ export async function pageAdmin() {
         if (u) $('#ctx' + r.id).innerHTML = `<a class="btn sm" href="profile.html?u=${esc(u.username)}">Open @${esc(u.username)}</a>`;
       } else if (r.target_type === 'comment') {
         const { data: c } = await sb.from('comments').select('body, post_id').eq('id', r.target_id).maybeSingle();
-        if (c) $('#ctx' + r.id).innerHTML = `<blockquote>${esc(c.body)}</blockquote><a class="btn sm" href="post.html?id=${c.post_id}#comments">Open post</a>`;
+        if (c) $('#ctx' + r.id).innerHTML = `<blockquote dir="auto">${esc(c.body)}</blockquote><a class="btn sm" href="post.html?id=${c.post_id}#comments">Open post</a>`;
       } else if (r.target_type === 'message') {
         $('#ctx' + r.id).innerHTML = `<span class="small muted">Private message #${esc(r.target_id)} — message text stays private; review the reporter's account of it and the reported user's public activity.</span>`;
       }
