@@ -38,7 +38,8 @@
   function steps(fa, en) {
     return '<div class="install-steps"><ol dir="rtl" lang="fa">' + fa.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol>' +
       '<ol dir="ltr" lang="en">' + en.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol></div>' +
-      '<p class="small muted">بعد از نصب، فقط یک بار با GitHub وارد شو؛ دفعه‌های بعد خودکار وارد می‌شوی.<br>After installing, sign in with GitHub once — you stay signed in.</p>';
+      '<p class="small muted" dir="rtl" lang="fa" style="margin:0">بعد از نصب، فقط یک بار با GitHub وارد شو؛ دفعه‌های بعد خودکار وارد می‌شوی.</p>' +
+      '<p class="small muted" style="margin:0">After installing, sign in with GitHub once — you stay signed in.</p>';
   }
 
   function install() {
