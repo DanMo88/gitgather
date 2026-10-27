@@ -1,16 +1,28 @@
 {
+  "id": "/gitgather/",
   "name": "Gitgather — The hangout for GitHub people",
   "short_name": "Gitgather",
   "description": "Showcase projects, follow makers, chat privately and climb the 24h Top 100.",
-  "start_url": "./index.html",
-  "scope": "./",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "/gitgather/?source=pwa",
+  "scope": "/gitgather/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
   "background_color": "#0b0f17",
   "theme_color": "#0b0f17",
+  "categories": ["social", "developer", "productivity"],
   "icons": [
-    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
     { "src": "assets/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
-    { "src": "assets/logo.svg", "sizes": "any", "type": "image/svg+xml" }
+    { "src": "assets/icons/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "shortcuts": [
+    { "name": "Post your project", "short_name": "Post", "url": "/gitgather/new.html", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Top 100 · 24h", "short_name": "Top 100", "url": "/gitgather/index.html?tab=top", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Messages", "short_name": "Chats", "url": "/gitgather/messages.html", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] }
   ]
 }

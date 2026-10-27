@@ -248,3 +248,15 @@ blockquote{margin:6px 0;padding:6px 12px;border-left:3px solid var(--line);color
 .report .meta{gap:8px}
 .toast.bad{background:#dc2626;color:#fff}
 @media (max-width:640px){.hero-art{max-width:150px}.hero-art .orb{display:none}.hero-art .center{inset:0}}
+/* install app (PWA) */
+.install-bar{display:flex;align-items:center;gap:12px;margin-top:18px;padding:12px 14px;border:1px solid var(--line);border-radius:var(--radius);background:color-mix(in srgb,var(--card) 88%,transparent);box-shadow:var(--shadow);max-width:560px}
+.install-bar[hidden],[data-install][hidden]{display:none!important}
+.install-ico img{width:44px;height:44px;border-radius:12px;display:block}
+.install-txt{display:flex;flex-direction:column;flex:1;min-width:0;line-height:1.3}
+.install-btn{flex-shrink:0}
+@media (max-width:480px){.install-bar{flex-wrap:wrap}.install-btn{width:100%;justify-content:center}}
+.install-steps{display:grid;gap:10px}
+.install-steps ol{margin:0;padding-inline-start:22px;display:grid;gap:6px;font-size:.95rem}
+.install-steps ol[lang="fa"]{font-family:Vazirmatn,Tahoma,var(--font)}
+.install-steps .ios-share{vertical-align:-3px;color:var(--accent)}
+.install-dlg .dlg-head h3{font-size:1.05rem}

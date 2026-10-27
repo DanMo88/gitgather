@@ -4,7 +4,11 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 export const SUPABASE_URL = 'https://nlgaqedwnoemznusinoo.supabase.co';
 // Publishable key: safe to ship in the browser. All access is enforced by Row Level Security.
 export const SUPABASE_KEY = 'sb_publishable_UgfU-Kvs3vvZtkw96NR-Dw_Nuh_ddR7';
-export const sb = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, flowType: 'pkce' } });
+export const sb = createClient(SUPABASE_URL, SUPABASE_KEY, {
+  // Sign in once: the session (with its refresh token) lives in localStorage and is refreshed automatically,
+  // so the installed app (PWA) and the website stay signed in across launches until the user signs out.
+  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, flowType: 'pkce', storage: window.localStorage }
+});
 
 export const $ = (s, el = document) => el.querySelector(s);
 export const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -37,6 +41,7 @@ function applyTheme(t) {
 }
 
 /* ---------- auth ---------- */
+export const APP_BASE = '/gitgather/';
 export let me = null;      // my profile row (or null)
 let providerReady = null;
 async function githubEnabled() {
@@ -47,7 +52,9 @@ async function githubEnabled() {
 }
 export async function signIn() {
   if (!(await githubEnabled())) { toast('GitHub sign-in is being switched on — please try again soon.', true); return; }
-  await sb.auth.signInWithOAuth({ provider: 'github', options: { redirectTo: location.href.split('#')[0] } });
+  // Always come back to a page inside the app scope (/gitgather/), so the installed app reopens on return.
+  const path = location.pathname.startsWith(APP_BASE) ? location.pathname + location.search : APP_BASE;
+  await sb.auth.signInWithOAuth({ provider: 'github', options: { redirectTo: location.origin + path } });
 }
 export async function signOut() { await sb.auth.signOut(); location.href = 'index.html'; }
 export function requireMe(msg = 'Sign in with GitHub to do that.') {
@@ -81,12 +88,12 @@ export async function init(active = '') {
   const footer = document.createElement('footer');
   footer.innerHTML = `<div class="wrap">
     <div><b>Gitgather</b> · The hangout for GitHub people<br><span class="small">Made by <b>Daniel Mozafari</b></span></div>
-    <div class="small"><a href="https://github.com/DanMo88/gitgather">Source</a> · <a href="https://github.com/DanMo88/gitgather/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a> · <a href="settings.html">Settings</a> · <a href="https://docs.github.com/en/site-policy/acceptable-use-policies/github-acceptable-use-policies">GitHub AUP</a></div>
+    <div class="small"><a href="https://github.com/DanMo88/gitgather">Source</a> · <a href="https://github.com/DanMo88/gitgather/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a> · <a href="settings.html">Settings</a> · <a href="#" data-install>📲 Install app</a> · <a href="https://docs.github.com/en/site-policy/acceptable-use-policies/github-acceptable-use-policies">GitHub AUP</a></div>
   </div>`;
   document.body.appendChild(footer);
   $('#themeBtn').onclick = () => { const t = currentTheme() === 'dark' ? 'light' : 'dark'; localStorage.setItem('gg-theme', t); applyTheme(t); };
   applyTheme(currentTheme());
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+  document.dispatchEvent(new Event('gg:layout'));
 
   const { data: { session } } = await sb.auth.getSession();
   if (session?.user) {
@@ -111,6 +118,11 @@ export async function init(active = '') {
     slot.innerHTML = `<button class="btn sm" id="signInBtn">Sign in</button>`;
     $('#signInBtn').onclick = signIn;
   }
+  // Keep every open page/app window in sync with the stored session (sign-in/out in another tab, token refresh).
+  sb.auth.onAuthStateChange((event, s) => {
+    if (event === 'SIGNED_OUT' && me) location.reload();
+    else if (event === 'SIGNED_IN' && !me && s?.user) location.reload();
+  });
   return me;
 }
 export async function refreshBadges() {
